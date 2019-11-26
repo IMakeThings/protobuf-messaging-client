@@ -4,8 +4,8 @@ com/proto/MessageProtos.class
 com/proto/None$Builder.class
 com/proto/messageServiceGrpc$messageServiceMethodDescriptorSupplier.class
 com/proto/Message$Builder.class
-com/proto/None.class
 com/proto/messageServiceGrpc$messageServiceBaseDescriptorSupplier.class
+com/proto/None.class
 com/proto/None$1.class
 com/proto/Message.class
 com/proto/messageServiceGrpc.class

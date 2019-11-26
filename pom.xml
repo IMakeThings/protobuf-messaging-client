@@ -91,6 +91,9 @@
           <version>3.0.2</version>
           <configuration>
             <archive>
+            	<manifest>
+            		<mainClass>com.github.protobuf_messaging_client.ProtobufMessagingClient</mainClass>
+            	</manifest>
             </archive>
           </configuration>
         </plugin>
