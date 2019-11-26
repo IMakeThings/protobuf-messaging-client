@@ -4,14 +4,15 @@ com/proto/MessageProtos.class
 com/proto/None$Builder.class
 com/proto/messageServiceGrpc$messageServiceMethodDescriptorSupplier.class
 com/proto/Message$Builder.class
-com/proto/messageServiceGrpc$messageServiceBaseDescriptorSupplier.class
 com/proto/None.class
+com/proto/messageServiceGrpc$messageServiceBaseDescriptorSupplier.class
 com/proto/None$1.class
 com/proto/Message.class
 com/proto/messageServiceGrpc.class
 com/proto/messageServiceGrpc$messageServiceBlockingStub.class
 com/github/support/Logger.class
 com/proto/messageServiceGrpc$MethodHandlers.class
+com/github/protobuf_messaging_client/ProtobufMessagingClient$2.class
 com/github/protobuf_messaging_client/ProtobufMessagingClient.class
 com/proto/messageServiceGrpc$messageServiceImplBase.class
 com/proto/messageServiceGrpc$messageServiceFutureStub.class

@@ -29,7 +29,7 @@ public class ProtobufMessagingClient {
 	Random rand;
 	
 	public ProtobufMessagingClient(String host, int port) {
-		channel = ManagedChannelBuilder.forAddress(host, port).build();
+		channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
 		blockingStub = messageServiceGrpc.newBlockingStub(channel);
 		asyncStub = messageServiceGrpc.newStub(channel);
 		
@@ -37,6 +37,16 @@ public class ProtobufMessagingClient {
 	}
 	
 	public void init() {
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+	      @Override
+	      public void run() {
+	        // Use stderr here since the logger may have been reset by its JVM shutdown hook.
+	        System.err.println("*** Disconnecting from server");
+	        disconnect();
+	        System.err.println("*** Disconnected");
+	      }
+	    });
+		
 		Logger.log("Enter a username");
 		try {
 			userName = br.readLine();
@@ -63,7 +73,7 @@ public class ProtobufMessagingClient {
 	}
 	
 	private void shutdown() throws InterruptedException {
-	    channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
+	    channel.shutdown();
 	}
 	
 	public void sendMessage(Message message) {
@@ -82,7 +92,7 @@ public class ProtobufMessagingClient {
 					@Override
 					public void onCompleted() {
 						// TODO Auto-generated method stub
-						
+						disconnect();
 					}
 
 					@Override
@@ -94,7 +104,7 @@ public class ProtobufMessagingClient {
 					@Override
 					public void onNext(Message arg0) {
 						// TODO Auto-generated method stub
-						Logger.log(arg0.getMessage());
+						Logger.log(arg0.getSender() + ":\t" + arg0.getMessage());
 					}
 			
 		};
@@ -118,7 +128,7 @@ public class ProtobufMessagingClient {
 			
 			ProtobufMessagingClient pmc = new ProtobufMessagingClient(hostName, port);
 			pmc.init();
-//			pmc.receiveMessages();
+			pmc.receiveMessages();
 			
 			while(true) {
 				System.out.println("> ");
@@ -135,7 +145,5 @@ public class ProtobufMessagingClient {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
 }
